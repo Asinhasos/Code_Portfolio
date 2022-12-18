@@ -1,0 +1,45 @@
+var greyTransparent = document.createElement("DIV");
+greyTransparent.style.position="fixed";
+greyTransparent.style.top="0";
+greyTransparent.style.width="100%";
+greyTransparent.style.height="100%";
+greyTransparent.style.zIndex="20";
+greyTransparent.style.backgroundColor="rgba(0, 0, 0, 0.5)";
+greyTransparent.style.display="flex";
+greyTransparent.style.justifyContent="center";
+greyTransparent.style.alignItems="center";
+
+var popUp = document.createElement("DIV");
+popUp.className = "pop-up";
+greyTransparent.appendChild(popUp);
+
+var headerPopup = document.createElement("HEADER");
+popUp.appendChild(headerPopup);
+
+var xClose = document.createElement("IMG");
+xClose.src="../IMAGES/x.jpg";
+headerPopup.appendChild(xClose);
+xClose.addEventListener("click", function closePopup () {
+    document.body.removeChild(greyTransparent);
+    homepageEventDeactivate.style.pointerEvents= "auto";
+})
+
+var textPopup = document.createElement("P");
+popUp.appendChild(textPopup);
+textPopup.innerHTML="Olá! Chamo-me David Pinto. Neste Website podes encontrar o meu portfólio básico: os meus projetos, alguns blogs que escrevi, e alguma informação adicional sobre mim!"
+
+var homepageEventDeactivate = document.getElementsByClassName("base");
+
+
+function start() {
+
+let data = sessionStorage.getItem("popupHasBeenShown")
+
+if(data == null) {
+    document.body.appendChild(greyTransparent);
+    homepageEventDeactivate.style.pointerEvents= "none";
+    sessionStorage.setItem("popupHasBeenShown","true");
+}
+
+}
+
